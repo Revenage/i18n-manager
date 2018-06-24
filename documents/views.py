@@ -12,11 +12,12 @@ from rest_framework import authentication, permissions
 
 class DocumentViewSet(ModelViewSet):
     # authentication_classes = (authentication.TokenAuthentication,)
-
-    def get_queryset(self):
-        return Document.objects.filter(owner=self.request.user)
-    # queryset = Document.objects.all()
     serializer_class = DocumentsSerializer
+    queryset = Document.objects.all()
+
+    # def get_queryset(self):
+    #     return Document.objects.filter(owner=self.request.user)
+    # queryset = Document.objects.all()
 
     # def list(self, request):
     #     queryset = Document.objects.all()
@@ -30,8 +31,8 @@ class DocumentViewSet(ModelViewSet):
     #     return Response(serializer.data)
 
     # def create(self, request):
-    #     document = Document.objects.create_document(
-    #         name=validated_data['name'],  # HERE
+    #     document = Document.objects.create(
+    #         name=request['name'],  # HERE
     #     )
     #     return document
 
