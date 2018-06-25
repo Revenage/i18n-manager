@@ -5,4 +5,6 @@ db.sqlite3
 Pipfile
 Pipfile.lock
 setup.md
-myvenv
+myenv/
+env/
+myvenv/
