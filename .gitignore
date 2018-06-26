@@ -8,3 +8,4 @@ setup.md
 myenv/
 env/
 myvenv/
+__pycache__/
