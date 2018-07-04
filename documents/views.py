@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 
+from users.models import CustomUser
 from rest_framework import authentication, permissions
 
 
@@ -15,9 +16,11 @@ class DocumentViewSet(ModelViewSet):
     serializer_class = DocumentsSerializer
     queryset = Document.objects.all()
 
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
     # def get_queryset(self):
     #     return Document.objects.filter(owner=self.request.user)
-    # queryset = Document.objects.all()
+    #       queryset = Document.objects.all()
 
     # def list(self, request):
     #     queryset = Document.objects.all()
@@ -31,11 +34,12 @@ class DocumentViewSet(ModelViewSet):
     #     return Response(serializer.data)
 
     # def create(self, request):
+    #     user = self.get_object()
     #     document = Document.objects.create(
-    #         name=request['name'],  # HERE
+    #         name=request['name'],
+    #         owner=user
     #     )
     #     return document
-
     #     pass
 
     # def destroy(self, request, pk=None):
