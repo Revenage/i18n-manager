@@ -8,7 +8,6 @@ setup.md
 myenv/
 env/
 myvenv/
-__pycache__
-api/__pycache__
-app/__pycache__
-documents/__pycache__
+__pycache__/
+*.pyc
+*.pyo
