@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pip freeze > requirements.txt
+pip3 freeze > requirements.txt
 read -p "Commit description: " desc
 git add . && \
 git add -u && \
