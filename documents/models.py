@@ -6,7 +6,7 @@ from django.contrib.postgres.fields import JSONField
 
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.CharField(blank=True, max_length=255)
+    name = models.CharField(blank=True, max_length=255, default='Untitled')
     owner = models.ForeignKey(
         CustomUser, on_delete=models.CASCADE, related_name='documents')
     created_date = models.DateTimeField(
