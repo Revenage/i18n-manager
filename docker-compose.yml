@@ -1,0 +1,19 @@
+version: '3'
+services:
+  nginx:
+    build: .
+    image: nginx
+    ports:
+      - "8080:8080"
+    volumes:
+      - app:/app
+    depends_on: 
+      - frontend
+  frontend:
+    build: ./frontend
+    command: 'yarn prod'
+    volumes:
+      - app:/app
+volumes:
+  app:
+    driver: local
