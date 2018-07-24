@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  static:
+    build: .
+    image: static
+    ports:
+      - "8080:8080"
+    volumes:
+      - wwwroot:/wwwroot
+
+  frontend:
+    build: ./frontend
+    command: yarn prod
+    volumes:
+     - ./frontend:/app
+     - wwwroot:/wwwroot
+    
+  db:
+    image: postgres
+
+  backend:
+    build: ./backend
+    command: python /backend/manage.py migrate --noinput
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+     - ./backend:/app
+    ports:
+      - "8000:8000"
+    env_file: ./backend/.env
+    depends_on:
+      - frontend
+      - db
+  
+volumes:
+  postgres_data:
+  wwwroot:
+    driver: local
