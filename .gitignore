@@ -1,6 +1,6 @@
 notes.md
 .vscode
-venv
+.env
 db.sqlite3
 Pipfile
 Pipfile.lock
@@ -8,6 +8,8 @@ setup.md
 myenv/
 env/
 myvenv/
+venv
+myenv
 __pycache__/
 *.pyc
 *.pyo
