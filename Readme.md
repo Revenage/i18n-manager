@@ -45,3 +45,6 @@ Login with your superuser account. Then navigate to all users. Logout. Sign up f
 5.  DEPLOY
 
 git push heroku master
+
+Run local
+heroku local
