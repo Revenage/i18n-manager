@@ -67,6 +67,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     'localhost:8080',
+    'localhost:8081',
+    'localhost:8082',
 )
 
 ROOT_URLCONF = 'app.urls'

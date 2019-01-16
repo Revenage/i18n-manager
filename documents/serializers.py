@@ -7,5 +7,5 @@ class DocumentsSerializer(ModelSerializer):
         model = Document
         owner = CurrentUserDefault()
         fields = ('id', 'name', 'owner', 'created_date',
-                  'published_date', 'data')
+                  'published_date', 'data', 'description')
         read_only_fields = ('owner',)

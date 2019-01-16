@@ -15,6 +15,7 @@ class Document(models.Model):
         blank=True, null=True, default=timezone.now)
 
     data = JSONField(null=True, blank=True)
+    description = models.CharField(blank=True, max_length=255, default='')
 
     def __str__(self):
         return self.name
