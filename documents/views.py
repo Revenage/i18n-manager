@@ -14,13 +14,23 @@ from rest_framework import authentication, permissions
 class DocumentViewSet(ModelViewSet):
     # authentication_classes = (authentication.TokenAuthentication,)
     serializer_class = DocumentsSerializer
-    queryset = Document.objects.all()
+    # queryset = Document.objects.all()
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-    # def get_queryset(self):
-    #     return Document.objects.filter(owner=self.request.user)
-    #       queryset = Document.objects.all()
+
+    def get_queryset(self):
+        # Document.objects.values('id', 'name', 'description')
+        queryset = Document.objects.all()
+        return queryset
+
+    #     d = {}
+    #     for obj in values:
+    #         key = obj.get('id')
+    #         d[key] = obj
+
+    #     serializer = DocumentsSerializer(d, many=True)
+    #     return Response(serializer.data)
 
     # def list(self, request):
     #     queryset = Document.objects.all()

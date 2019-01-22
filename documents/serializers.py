@@ -1,8 +1,9 @@
-from rest_framework.serializers import ModelSerializer, CurrentUserDefault
+from rest_framework.serializers import ModelSerializer, CurrentUserDefault, PrimaryKeyRelatedField
 from .models import Document
 
 
 class DocumentsSerializer(ModelSerializer):
+
     class Meta:
         model = Document
         owner = CurrentUserDefault()
