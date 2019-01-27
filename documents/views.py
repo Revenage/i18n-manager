@@ -1,7 +1,7 @@
 # from rest_framework import generics
 
 from .models import Document
-from .serializers import DocumentsSerializer
+from .serializers import DocumentsSerializer, DocumentSerializer
 
 from django.shortcuts import get_object_or_404
 from rest_framework.viewsets import ModelViewSet
@@ -12,8 +12,8 @@ from rest_framework import authentication, permissions
 
 
 class DocumentViewSet(ModelViewSet):
-    # authentication_classes = (authentication.TokenAuthentication,)
-    serializer_class = DocumentsSerializer
+    authentication_classes = (authentication.TokenAuthentication,)
+    serializer_class = DocumentSerializer
     # queryset = Document.objects.all()
 
     def perform_create(self, serializer):
@@ -24,24 +24,16 @@ class DocumentViewSet(ModelViewSet):
         queryset = Document.objects.all()
         return queryset
 
-    #     d = {}
-    #     for obj in values:
-    #         key = obj.get('id')
-    #         d[key] = obj
+    def list(self, request):
+        queryset = Document.objects.all()
+        serializer = DocumentsSerializer(queryset, many=True)
+        return Response(serializer.data)
 
-    #     serializer = DocumentsSerializer(d, many=True)
-    #     return Response(serializer.data)
-
-    # def list(self, request):
-    #     queryset = Document.objects.all()
-    #     serializer = DocumentsSerializer(queryset, many=True)
-    #     return Response(serializer.data)
-
-    # def retrieve(self, request, pk=None):
-    #     queryset = Document.objects.all()
-    #     document = get_object_or_404(queryset, pk=pk)
-    #     serializer = DocumentsSerializer(document)
-    #     return Response(serializer.data)
+    def retrieve(self, request, pk=None):
+        queryset = Document.objects.all()
+        document = get_object_or_404(queryset, pk=pk)
+        serializer = DocumentSerializer(document)
+        return Response(serializer.data)
 
     # def create(self, request):
     #     user = self.get_object()

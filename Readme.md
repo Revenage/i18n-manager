@@ -48,3 +48,7 @@ git push heroku master
 
 Run local
 heroku local
+
+heroku pg:psql
+drop database <database name>;
+create database <database name>;
